@@ -37,6 +37,11 @@ class MessageFactory(private val messageSource: MessageSource) {
     )
   }
 
+  /** 「{value}が見つかりません。」 */
+  fun targetNotFound(value: String): String {
+    return messageSource.getMessage("error.notFound.target", arrayOf(value), Locale.getDefault())
+  }
+
   /** 「許可されていないメソッドです。」 */
   fun methodNotAllowed(): String {
     return messageSource.getMessage(
