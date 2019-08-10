@@ -2,6 +2,8 @@ package com.kotatanaka.goodsapi.domain.service
 
 import com.kotatanaka.goodsapi.domain.dto.request.CreateGoodsBody
 import com.kotatanaka.goodsapi.domain.entity.GoodsEntity
+import com.kotatanaka.goodsapi.domain.enums.GoodsParams
+import com.kotatanaka.goodsapi.domain.exception.NotFoundException
 import com.kotatanaka.goodsapi.domain.repository.GoodsRepository
 import org.springframework.stereotype.Service
 
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service
  */
 @Service
 class GoodsService(private val goodsRepository: GoodsRepository) {
+
   /**
    * 商品登録サービス
    *
@@ -30,5 +33,15 @@ class GoodsService(private val goodsRepository: GoodsRepository) {
    */
   fun findAll(): List<GoodsEntity> {
     return goodsRepository.findAll()
+  }
+
+  /**
+   * 商品一件取得サービス
+   *
+   * @param id 商品ID
+   * @return GoodsEntity
+   */
+  fun findById(id: Int): GoodsEntity {
+    return goodsRepository.findById(id).orElseThrow { NotFoundException(GoodsParams.GOODS.label) }
   }
 }
