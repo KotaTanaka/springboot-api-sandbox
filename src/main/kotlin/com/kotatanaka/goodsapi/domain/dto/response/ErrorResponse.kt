@@ -31,7 +31,7 @@ data class ErrorResponse(
     }
 
     /**
-     * バリデーションエラー
+     * バリデーションエラー(Bean Validation)
      *
      * @param message エラーメッセージ
      * @param errorList エラーリスト
@@ -46,6 +46,20 @@ data class ErrorResponse(
             fieldError.defaultMessage?.replace("{0}", fieldError.field)
           }
         ),
+        HttpStatus.BAD_REQUEST
+      )
+    }
+
+    /**
+     * バリデーションエラー(ロジック内部)
+     *
+     * @param message エラーメッセージ
+     * @param detailMessage 詳細メッセージ
+     * @return ResponseEntity
+     */
+    fun validationError(message: String, detailMessage: String): ResponseEntity<ErrorResponse> {
+      return ResponseEntity(
+        ErrorResponse(HttpStatus.BAD_REQUEST.value(), message, listOf(detailMessage)),
         HttpStatus.BAD_REQUEST
       )
     }

@@ -1,6 +1,7 @@
 package com.kotatanaka.goodsapi.app.handler
 
 import com.kotatanaka.goodsapi.domain.dto.response.ErrorResponse
+import com.kotatanaka.goodsapi.domain.exception.NotFoundException
 import com.kotatanaka.goodsapi.domain.exception.ValidationException
 import com.kotatanaka.goodsapi.domain.factory.MessageFactory
 import org.slf4j.LoggerFactory
@@ -51,6 +52,21 @@ class AppExceptionHandler(private val messageFactory: MessageFactory) {
     val massage = messageFactory.validationError()
     log.warn(massage)
     return ErrorResponse.validationError(massage, e.errorList)
+  }
+
+  /**
+   * 対象が見つからない >> 400 Bad Request
+   *
+   * @param e NotFoundException
+   * @return ResponseEntity
+   */
+  @ExceptionHandler(NotFoundException::class)
+  fun handleNotFoundException(
+    e: NotFoundException
+  ): ResponseEntity<ErrorResponse> {
+    val detailMessage = messageFactory.targetNotFound(e.target)
+    log.warn(detailMessage)
+    return ErrorResponse.validationError(messageFactory.validationError(), detailMessage)
   }
 
   /**
