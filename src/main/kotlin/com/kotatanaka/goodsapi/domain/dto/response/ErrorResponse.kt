@@ -83,9 +83,9 @@ data class ErrorResponse(
      * @param detailMessage 詳細エラーメッセージ
      * @return ResponseEntity
      */
-    fun methodNotAllowed(message: String, detailMessage: String): ResponseEntity<ErrorResponse> {
+    fun internalServerError(message: String, detailMessage: String?): ResponseEntity<ErrorResponse> {
       return ResponseEntity(
-        ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), message, listOf(detailMessage)),
+        ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), message, listOfNotNull(detailMessage)),
         HttpStatus.INTERNAL_SERVER_ERROR
       )
     }

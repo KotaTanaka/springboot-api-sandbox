@@ -82,4 +82,17 @@ class AppExceptionHandler(private val messageFactory: MessageFactory) {
     log.warn(massage)
     return ErrorResponse.methodNotAllowed(massage)
   }
+
+  /**
+   * その他の例外 >> 500 InternalServerError
+   *
+   * @param e Exception
+   * @return ResponseEntity
+   */
+  @ExceptionHandler(Exception::class)
+  fun handleOtherException(e: Exception): ResponseEntity<ErrorResponse> {
+    val message = messageFactory.internalServerError()
+    log.error("{} - {}", message, e.message, e)
+    return ErrorResponse.internalServerError(message, e.message)
+  }
 }
