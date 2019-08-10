@@ -22,4 +22,13 @@ class GoodsService(private val goodsRepository: GoodsRepository) {
     val goods = GoodsEntity(name = body.name, description = body.description, price = body.price)
     return goodsRepository.save(goods)
   }
+
+  /**
+   * 商品一覧取得サービス
+   *
+   * @return List<GoodsEntity>
+   */
+  fun findAll(): List<GoodsEntity> {
+    return goodsRepository.findAll()
+  }
 }

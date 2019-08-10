@@ -2,11 +2,13 @@ package com.kotatanaka.goodsapi.app.controller
 
 import com.kotatanaka.goodsapi.domain.dto.request.CreateGoodsBody
 import com.kotatanaka.goodsapi.domain.dto.response.CreateGoodsResponse
+import com.kotatanaka.goodsapi.domain.dto.response.GoodsListingResponse
 import com.kotatanaka.goodsapi.domain.exception.ValidationException
 import com.kotatanaka.goodsapi.domain.service.GoodsService
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
 import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -18,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController
  * @author kotatanaka
  */
 @RestController
-@RequestMapping("/app")
+@RequestMapping("/app/goods")
 class GoodsController(private val goodsService: GoodsService) {
 
   /**
@@ -26,8 +28,9 @@ class GoodsController(private val goodsService: GoodsService) {
    *
    * @param body リクエストボディ
    * @param result BindingResult
+   * @return ResponseEntity
    */
-  @PostMapping("/goods")
+  @PostMapping
   fun createGoods(
     @RequestBody @Validated body: CreateGoodsBody,
     result: BindingResult
@@ -35,5 +38,16 @@ class GoodsController(private val goodsService: GoodsService) {
     if (result.hasErrors()) throw ValidationException(result.fieldErrors)
     val response = goodsService.save(body)
     return ResponseEntity.ok(CreateGoodsResponse(response.id))
+  }
+
+  /**
+   * 商品一覧取得
+   *
+   * @return ResponseEntity
+   */
+  @GetMapping
+  fun getGoodsList(): ResponseEntity<GoodsListingResponse> {
+    val response = goodsService.findAll()
+    return ResponseEntity.ok(GoodsListingResponse(response))
   }
 }
