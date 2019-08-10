@@ -59,7 +59,7 @@ class GoodsController(private val goodsService: GoodsService) {
    * @param id 商品ID(パスパラメータ)
    * @return ResponseEntity
    */
-  @GetMapping("/{id}")
+  @GetMapping("/{id:[0-9]{1,10}}")
   fun getGoodsDetail(@PathVariable id: Int): ResponseEntity<GoodsDetailResponse> {
     val response = goodsService.findById(id)
     return ResponseEntity.ok(GoodsDetailResponse(response))
