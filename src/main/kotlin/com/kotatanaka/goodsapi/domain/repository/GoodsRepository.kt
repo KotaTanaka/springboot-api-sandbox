@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository
  */
 @Repository
 interface GoodsRepository : JpaRepository<GoodsEntity, Int> {
+  fun findByNameContaining(key: String): List<GoodsEntity>
 }

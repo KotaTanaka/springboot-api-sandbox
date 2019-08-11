@@ -37,6 +37,16 @@ class GoodsService(private val goodsRepository: GoodsRepository) {
   }
 
   /**
+   * 商品名部分一致検索サービス
+   *
+   * @param key 検索文字列
+   * @return List<GoodsEntity>
+   */
+  fun findByName(key: String): List<GoodsEntity> {
+    return goodsRepository.findByNameContaining(key)
+  }
+
+  /**
    * 商品一件取得サービス
    *
    * @param id 商品ID

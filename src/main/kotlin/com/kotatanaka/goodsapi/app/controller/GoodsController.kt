@@ -1,6 +1,7 @@
 package com.kotatanaka.goodsapi.app.controller
 
 import com.kotatanaka.goodsapi.domain.dto.request.CreateGoodsBody
+import com.kotatanaka.goodsapi.domain.dto.request.SearchGoodsParam
 import com.kotatanaka.goodsapi.domain.dto.request.UpdateGoodsBody
 import com.kotatanaka.goodsapi.domain.dto.response.GoodsDetailResponse
 import com.kotatanaka.goodsapi.domain.dto.response.GoodsIdResponse
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
@@ -53,6 +55,23 @@ class GoodsController(private val goodsService: GoodsService) {
   @GetMapping
   fun getGoodsList(): ResponseEntity<GoodsListingResponse> {
     val response = goodsService.findAll()
+    return ResponseEntity.ok(GoodsListingResponse(response))
+  }
+
+  /**
+   * 商品名部分一致検索
+   *
+   * @param param リクエストパラメータ
+   * @param result BindingResult
+   * @return ResponseEntity
+   */
+  @GetMapping("/search")
+  fun searchGoodsByName(
+    @ModelAttribute @Validated param: SearchGoodsParam,
+    result: BindingResult
+  ): ResponseEntity<GoodsListingResponse> {
+    if (result.hasErrors()) throw ValidationException(result.fieldErrors)
+    val response = goodsService.findByName(param.key)
     return ResponseEntity.ok(GoodsListingResponse(response))
   }
 
