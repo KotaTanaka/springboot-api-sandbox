@@ -42,10 +42,35 @@ class MessageFactory(private val messageSource: MessageSource) {
     return messageSource.getMessage("error.notFound.target", arrayOf(value), Locale.getDefault())
   }
 
-  /** 「認証に失敗しました。。」 */
+  /** 「{value}は必須項目です。」 */
+  fun required(value: String): String {
+    return messageSource.getMessage(
+      "javax.validation.constraints.NotNull.message",
+      arrayOf(value),
+      Locale.getDefault()
+    )
+  }
+
+  /** 「認証に失敗しました。」 */
   fun forbidden(): String {
     return messageSource.getMessage(
       DefaultMessageSourceResolvable("error.forbidden"),
+      Locale.getDefault()
+    )
+  }
+
+  /** 「パスワードが間違っています。」 */
+  fun invalidPassword(): String {
+    return messageSource.getMessage(
+      DefaultMessageSourceResolvable("error.forbidden.password"),
+      Locale.getDefault()
+    )
+  }
+
+  /** 「トークンが不正です。」 */
+  fun invalidToken(): String {
+    return messageSource.getMessage(
+      DefaultMessageSourceResolvable("error.forbidden.token"),
       Locale.getDefault()
     )
   }
