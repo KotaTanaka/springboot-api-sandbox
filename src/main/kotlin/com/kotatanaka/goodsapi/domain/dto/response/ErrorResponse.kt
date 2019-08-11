@@ -65,6 +65,20 @@ data class ErrorResponse(
     }
 
     /**
+     * 認証エラー
+     *
+     * @param message エラーメッセージ
+     * @param detailMessage 詳細メッセージ
+     * @return ResponseEntity
+     */
+    fun forbidden(message: String, detailMessage: String): ResponseEntity<ErrorResponse> {
+      return ResponseEntity(
+        ErrorResponse(HttpStatus.FORBIDDEN.value(), message, listOf(detailMessage)),
+        HttpStatus.FORBIDDEN
+      )
+    }
+
+    /**
      * URLが存在しないエラー
      *
      * @param message エラーメッセージ
