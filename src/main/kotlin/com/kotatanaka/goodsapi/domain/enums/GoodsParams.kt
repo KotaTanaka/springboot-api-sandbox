@@ -9,6 +9,7 @@ enum class GoodsParams(
   val key: String,
   val label: String
 ) {
+  REQUEST_ID("requestId", "リクエストID"),
   GOODS("goods", "商品"),
   GOODS_ID("id", "商品ID")
 }

@@ -14,7 +14,6 @@ class DateTimeUtil {
   companion object {
     /**
      * 年月日時分秒形式にフォーマットする
-     *
      * @param value Timestamp
      * @return yyyy/MM/dd HH:mm:ss
      */
