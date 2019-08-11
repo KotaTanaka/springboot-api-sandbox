@@ -1,7 +1,7 @@
 package com.kotatanaka.goodsapi.domain.dto.response
 
 /**
- * 商品登録レスポンス
+ * 商品IDのみを返却するレスポンス
  *
  * @author kotatanaka
  */

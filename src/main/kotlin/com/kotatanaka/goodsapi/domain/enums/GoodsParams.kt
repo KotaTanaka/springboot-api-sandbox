@@ -11,5 +11,7 @@ enum class GoodsParams(
 ) {
   REQUEST_ID("requestId", "リクエストID"),
   GOODS("goods", "商品"),
-  GOODS_ID("id", "商品ID")
+  GOODS_ID("id", "商品ID"),
+  USER("user", "ユーザー"),
+  AUTHORIZATION("Authorization", "Authorization ヘッダ")
 }

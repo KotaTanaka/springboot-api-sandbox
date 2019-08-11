@@ -10,4 +10,7 @@ import org.springframework.stereotype.Repository
  * @author kotatanaka
  */
 @Repository
-interface UserRepository : JpaRepository<UserEntity, Int>
+interface UserRepository : JpaRepository<UserEntity, Int> {
+  fun findById(id: String): UserEntity?
+  fun findByLoginToken(id: String): UserEntity?
+}
