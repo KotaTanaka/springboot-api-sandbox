@@ -1,6 +1,7 @@
 package com.kotatanaka.goodsapi.domain.dto.request
 
 import javax.validation.constraints.NotBlank
+import javax.validation.constraints.Size
 
 /**
  * 商品名部分一致検索リクエストパラメータ
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotBlank
  * @author kotatanaka
  */
 data class SearchGoodsParam(
-  @NotBlank
-  var key: String
+  @field:NotBlank
+  @field:Size(max = 50)
+  var key: String?
 )

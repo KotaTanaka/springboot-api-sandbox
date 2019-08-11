@@ -1,6 +1,8 @@
 package com.kotatanaka.goodsapi.domain.dto.request
 
 import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
+import javax.validation.constraints.Size
 
 /**
  * 商品登録リクエストボディ
@@ -8,11 +10,13 @@ import javax.validation.constraints.NotBlank
  * @author kotatanaka
  */
 data class CreateGoodsBody(
-  @NotBlank
-  var name: String,
+  @field:NotBlank
+  @field:Size(max = 50)
+  var name: String?,
 
+  @field:Size(max = 500)
   var description: String?,
 
-  @NotBlank
-  var price: Int
+  @field:NotNull
+  var price: Int?
 )

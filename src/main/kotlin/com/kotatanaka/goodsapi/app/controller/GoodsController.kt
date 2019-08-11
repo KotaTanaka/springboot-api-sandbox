@@ -71,7 +71,7 @@ class GoodsController(private val goodsService: GoodsService) {
     result: BindingResult
   ): ResponseEntity<GoodsListingResponse> {
     if (result.hasErrors()) throw ValidationException(result.fieldErrors)
-    val response = goodsService.findByName(param.key)
+    val response = goodsService.findByName(param.key as String)
     return ResponseEntity.ok(GoodsListingResponse(response))
   }
 

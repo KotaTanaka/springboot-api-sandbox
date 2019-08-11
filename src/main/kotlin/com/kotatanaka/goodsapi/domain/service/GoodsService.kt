@@ -23,7 +23,11 @@ class GoodsService(private val goodsRepository: GoodsRepository) {
    * @return 作成したGoodsEntity
    */
   fun create(body: CreateGoodsBody): GoodsEntity {
-    val goods = GoodsEntity(name = body.name, description = body.description, price = body.price)
+    val goods = GoodsEntity(
+      name = body.name as String,
+      description = body.description,
+      price = body.price as Int
+    )
     return goodsRepository.save(goods)
   }
 
