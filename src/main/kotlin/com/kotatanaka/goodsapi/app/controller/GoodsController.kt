@@ -10,6 +10,7 @@ import com.kotatanaka.goodsapi.domain.service.GoodsService
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
 import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -82,5 +83,17 @@ class GoodsController(private val goodsService: GoodsService) {
     if (result.hasErrors()) throw ValidationException(result.fieldErrors)
     val response = goodsService.update(id, body)
     return ResponseEntity.ok(GoodsIdResponse(response.id))
+  }
+
+  /**
+   * 商品削除
+   *
+   * @param id 商品ID(パスパラメータ)
+   * @return ResponseEntity
+   */
+  @DeleteMapping("/{id:[0-9]{1,10}}")
+  fun deleteGoods(@PathVariable id: Int): ResponseEntity<GoodsIdResponse> {
+    goodsService.delete(id)
+    return ResponseEntity.ok(GoodsIdResponse(id))
   }
 }

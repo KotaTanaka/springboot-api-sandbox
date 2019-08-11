@@ -59,4 +59,14 @@ class GoodsService(private val goodsRepository: GoodsRepository) {
     targetGoods.price = body.price ?: targetGoods.price
     return goodsRepository.save(targetGoods)
   }
+
+  /**
+   * 商品削除サービス
+   *
+   * @param id 商品ID
+   */
+  fun delete(id: Int) {
+    val targetGoods = findById(id)
+    goodsRepository.delete(targetGoods)
+  }
 }
