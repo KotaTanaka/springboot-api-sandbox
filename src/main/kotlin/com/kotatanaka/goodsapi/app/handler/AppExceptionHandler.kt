@@ -1,6 +1,7 @@
 package com.kotatanaka.goodsapi.app.handler
 
 import com.kotatanaka.goodsapi.domain.dto.response.ErrorResponse
+import com.kotatanaka.goodsapi.domain.enums.GoodsParams
 import com.kotatanaka.goodsapi.domain.exception.AuthenticationException
 import com.kotatanaka.goodsapi.domain.exception.NotFoundException
 import com.kotatanaka.goodsapi.domain.exception.ValidationException
@@ -12,6 +13,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.servlet.NoHandlerFoundException
+import javax.servlet.http.HttpServletRequest
 
 /**
  * 例外ハンドラー
@@ -33,11 +35,12 @@ class AppExceptionHandler(private val messageFactory: MessageFactory) {
    */
   @ExceptionHandler(HttpMessageNotReadableException::class)
   fun handleHttpMessageNotReadableException(
-    e: HttpMessageNotReadableException
+    e: HttpMessageNotReadableException,
+    request: HttpServletRequest
   ): ResponseEntity<ErrorResponse> {
-    val massage = messageFactory.badRequestBody()
-    log.warn(massage)
-    return ErrorResponse.badRequestBody(massage)
+    val message = messageFactory.badRequestBody()
+    log.warn("[${request.getAttribute(GoodsParams.REQUEST_ID.key)}] $message")
+    return ErrorResponse.badRequestBody(message)
   }
 
   /**
@@ -48,11 +51,12 @@ class AppExceptionHandler(private val messageFactory: MessageFactory) {
    */
   @ExceptionHandler(ValidationException::class)
   fun handleValidationException(
-    e: ValidationException
+    e: ValidationException,
+    request: HttpServletRequest
   ): ResponseEntity<ErrorResponse> {
-    val massage = messageFactory.validationError()
-    log.warn(massage)
-    return ErrorResponse.validationError(massage, e.errorList)
+    val message = messageFactory.validationError()
+    log.warn("[${request.getAttribute(GoodsParams.REQUEST_ID.key)}] $message")
+    return ErrorResponse.validationError(message, e.errorList)
   }
 
   /**
@@ -63,10 +67,11 @@ class AppExceptionHandler(private val messageFactory: MessageFactory) {
    */
   @ExceptionHandler(NotFoundException::class)
   fun handleNotFoundException(
-    e: NotFoundException
+    e: NotFoundException,
+    request: HttpServletRequest
   ): ResponseEntity<ErrorResponse> {
     val detailMessage = messageFactory.targetNotFound(e.target)
-    log.warn(detailMessage)
+    log.warn("[${request.getAttribute(GoodsParams.REQUEST_ID.key)}] $detailMessage")
     return ErrorResponse.validationError(messageFactory.validationError(), detailMessage)
   }
 
@@ -78,9 +83,10 @@ class AppExceptionHandler(private val messageFactory: MessageFactory) {
    */
   @ExceptionHandler(AuthenticationException::class)
   fun handleAuthenticationException(
-    e: AuthenticationException
+    e: AuthenticationException,
+    request: HttpServletRequest
   ): ResponseEntity<ErrorResponse> {
-    log.warn(e.message)
+    log.warn("[${request.getAttribute(GoodsParams.REQUEST_ID.key)}] ${e.message}")
     return ErrorResponse.forbidden(messageFactory.forbidden(), e.message)
   }
 
@@ -92,11 +98,12 @@ class AppExceptionHandler(private val messageFactory: MessageFactory) {
    */
   @ExceptionHandler(NoHandlerFoundException::class)
   fun handleNoHandlerFoundException(
-    e: NoHandlerFoundException
+    e: NoHandlerFoundException,
+    request: HttpServletRequest
   ): ResponseEntity<ErrorResponse> {
-    val massage = messageFactory.pathNotFound()
-    log.warn(massage)
-    return ErrorResponse.pathNotFound(massage)
+    val message = messageFactory.pathNotFound()
+    log.warn("[${request.getAttribute(GoodsParams.REQUEST_ID.key)}] $message")
+    return ErrorResponse.pathNotFound(message)
   }
 
   /**
@@ -107,11 +114,12 @@ class AppExceptionHandler(private val messageFactory: MessageFactory) {
    */
   @ExceptionHandler(HttpRequestMethodNotSupportedException::class)
   fun handleHttpRequestMethodNotSupportedException(
-    e: HttpRequestMethodNotSupportedException
+    e: HttpRequestMethodNotSupportedException,
+    request: HttpServletRequest
   ): ResponseEntity<ErrorResponse> {
-    val massage = messageFactory.methodNotAllowed()
-    log.warn(massage)
-    return ErrorResponse.methodNotAllowed(massage)
+    val message = messageFactory.methodNotAllowed()
+    log.warn("[${request.getAttribute(GoodsParams.REQUEST_ID.key)}] $message")
+    return ErrorResponse.methodNotAllowed(message)
   }
 
   /**
@@ -121,9 +129,12 @@ class AppExceptionHandler(private val messageFactory: MessageFactory) {
    * @return ResponseEntity
    */
   @ExceptionHandler(Exception::class)
-  fun handleOtherException(e: Exception): ResponseEntity<ErrorResponse> {
+  fun handleOtherException(
+    e: Exception,
+    request: HttpServletRequest
+  ): ResponseEntity<ErrorResponse> {
     val message = messageFactory.internalServerError()
-    log.error("{} - {}", message, e.message, e)
+    log.error("[{}] {} {}", request.getAttribute(GoodsParams.REQUEST_ID.key), message, e.message, e)
     return ErrorResponse.internalServerError(message, e.message)
   }
 }
