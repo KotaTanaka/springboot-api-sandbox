@@ -3,6 +3,7 @@ package com.kotatanaka.goodsapi.domain.factory
 import org.springframework.context.MessageSource
 import org.springframework.context.support.DefaultMessageSourceResolvable
 import org.springframework.stereotype.Component
+import org.springframework.validation.FieldError
 import java.util.Locale
 
 /**
@@ -51,6 +52,11 @@ class MessageFactory(private val messageSource: MessageSource) {
     )
   }
 
+  /** 「{value}は既に使用されています。」 */
+  fun alreadyUsed(value: String): String {
+    return messageSource.getMessage("custom.validation.alreadyUsed", arrayOf(value), Locale.getDefault())
+  }
+
   /** 「認証に失敗しました。」 */
   fun forbidden(): String {
     return messageSource.getMessage(
@@ -89,5 +95,18 @@ class MessageFactory(private val messageSource: MessageSource) {
       DefaultMessageSourceResolvable("error.internalServerError"),
       Locale.getDefault()
     )
+  }
+
+  /**
+   * FieldErrorのリストを作る
+   * ValidationExceptionをBeanValidation以外で発生させる場合に用いる
+   *
+   * @param errorMessages エラーメッセージ(複数可能)
+   * @return List<FieldError>
+   */
+  fun getValidationFieldErrorList(vararg errorMessages: String): List<FieldError> {
+    return errorMessages.map { errorMessage ->
+      FieldError("", "", errorMessage)
+    }
   }
 }

@@ -5,6 +5,7 @@ import com.kotatanaka.goodsapi.domain.dto.request.LoginBody
 import com.kotatanaka.goodsapi.domain.entity.UserEntity
 import com.kotatanaka.goodsapi.domain.enums.GoodsParams
 import com.kotatanaka.goodsapi.domain.exception.AuthenticationException
+import com.kotatanaka.goodsapi.domain.exception.ValidationException
 import com.kotatanaka.goodsapi.domain.factory.MessageFactory
 import com.kotatanaka.goodsapi.domain.repository.UserRepository
 import com.kotatanaka.goodsapi.util.IdUtil
@@ -28,8 +29,17 @@ class UserService(
    * @return 作成したUserEntity
    */
   fun create(body: CreateUserBody): UserEntity {
+    val userId = body.id as String
+    val existingUser = findById(userId)
+
+    if (existingUser != null) {
+      throw ValidationException(
+        messageFactory.getValidationFieldErrorList(messageFactory.alreadyUsed(GoodsParams.USER_ID.key))
+      )
+    }
+
     val user = UserEntity(
-      id = body.id as String,
+      id = userId,
       name = body.name as String,
       password = body.password as String,
       loginToken = IdUtil.generateLoginToken()
