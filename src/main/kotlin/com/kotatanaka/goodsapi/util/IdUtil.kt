@@ -17,5 +17,13 @@ class IdUtil {
     fun generateUUID(): String {
       return UUID.randomUUID().toString()
     }
+
+    /**
+     * ログイントークンを生成する
+     * @return UUIDからハイフンを除いた文字列
+     */
+    fun generateLoginToken(): String {
+      return generateUUID().replace("-", "")
+    }
   }
 }
