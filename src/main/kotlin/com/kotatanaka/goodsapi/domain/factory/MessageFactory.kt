@@ -42,6 +42,14 @@ class MessageFactory(private val messageSource: MessageSource) {
     return messageSource.getMessage("error.notFound.target", arrayOf(value), Locale.getDefault())
   }
 
+  /** 「認証に失敗しました。。」 */
+  fun forbidden(): String {
+    return messageSource.getMessage(
+      DefaultMessageSourceResolvable("error.forbidden"),
+      Locale.getDefault()
+    )
+  }
+
   /** 「許可されていないメソッドです。」 */
   fun methodNotAllowed(): String {
     return messageSource.getMessage(
