@@ -1,8 +1,9 @@
 package com.kotatanaka.goodsapi.app.controller
 
 import com.kotatanaka.goodsapi.domain.dto.request.CreateGoodsBody
-import com.kotatanaka.goodsapi.domain.dto.response.CreateGoodsResponse
+import com.kotatanaka.goodsapi.domain.dto.request.UpdateGoodsBody
 import com.kotatanaka.goodsapi.domain.dto.response.GoodsDetailResponse
+import com.kotatanaka.goodsapi.domain.dto.response.GoodsIdResponse
 import com.kotatanaka.goodsapi.domain.dto.response.GoodsListingResponse
 import com.kotatanaka.goodsapi.domain.exception.ValidationException
 import com.kotatanaka.goodsapi.domain.service.GoodsService
@@ -12,6 +13,7 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -36,10 +38,10 @@ class GoodsController(private val goodsService: GoodsService) {
   fun createGoods(
     @RequestBody @Validated body: CreateGoodsBody,
     result: BindingResult
-  ): ResponseEntity<CreateGoodsResponse> {
+  ): ResponseEntity<GoodsIdResponse> {
     if (result.hasErrors()) throw ValidationException(result.fieldErrors)
-    val response = goodsService.save(body)
-    return ResponseEntity.ok(CreateGoodsResponse(response.id))
+    val response = goodsService.create(body)
+    return ResponseEntity.ok(GoodsIdResponse(response.id))
   }
 
   /**
@@ -63,5 +65,22 @@ class GoodsController(private val goodsService: GoodsService) {
   fun getGoodsDetail(@PathVariable id: Int): ResponseEntity<GoodsDetailResponse> {
     val response = goodsService.findById(id)
     return ResponseEntity.ok(GoodsDetailResponse(response))
+  }
+
+  /**
+   * 商品情報更新
+   *
+   * @param id 商品ID(パスパラメータ)
+   * @return ResponseEntity
+   */
+  @PutMapping("/{id:[0-9]{1,10}}")
+  fun updateGoods(
+    @PathVariable id: Int,
+    @RequestBody @Validated body: UpdateGoodsBody,
+    result: BindingResult
+  ): ResponseEntity<GoodsIdResponse> {
+    if (result.hasErrors()) throw ValidationException(result.fieldErrors)
+    val response = goodsService.update(id, body)
+    return ResponseEntity.ok(GoodsIdResponse(response.id))
   }
 }

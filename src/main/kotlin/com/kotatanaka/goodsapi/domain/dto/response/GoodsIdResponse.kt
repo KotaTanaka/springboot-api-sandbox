@@ -5,4 +5,4 @@ package com.kotatanaka.goodsapi.domain.dto.response
  *
  * @author kotatanaka
  */
-data class CreateGoodsResponse(val id: Int)
+data class GoodsIdResponse(val id: Int)

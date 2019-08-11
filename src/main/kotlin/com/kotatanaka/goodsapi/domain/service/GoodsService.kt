@@ -1,6 +1,7 @@
 package com.kotatanaka.goodsapi.domain.service
 
 import com.kotatanaka.goodsapi.domain.dto.request.CreateGoodsBody
+import com.kotatanaka.goodsapi.domain.dto.request.UpdateGoodsBody
 import com.kotatanaka.goodsapi.domain.entity.GoodsEntity
 import com.kotatanaka.goodsapi.domain.enums.GoodsParams
 import com.kotatanaka.goodsapi.domain.exception.NotFoundException
@@ -19,9 +20,9 @@ class GoodsService(private val goodsRepository: GoodsRepository) {
    * 商品登録サービス
    *
    * @param body CreateGoodsBody
-   * @return GoodsEntity
+   * @return 作成したGoodsEntity
    */
-  fun save(body: CreateGoodsBody): GoodsEntity {
+  fun create(body: CreateGoodsBody): GoodsEntity {
     val goods = GoodsEntity(name = body.name, description = body.description, price = body.price)
     return goodsRepository.save(goods)
   }
@@ -43,5 +44,19 @@ class GoodsService(private val goodsRepository: GoodsRepository) {
    */
   fun findById(id: Int): GoodsEntity {
     return goodsRepository.findById(id).orElseThrow { NotFoundException(GoodsParams.GOODS.label) }
+  }
+
+  /**
+   * 商品更新サービス
+   *
+   * @param id 商品ID
+   * @return 更新後のGoodsEntity
+   */
+  fun update(id: Int, body: UpdateGoodsBody): GoodsEntity {
+    val targetGoods = findById(id)
+    targetGoods.name = body.name ?: targetGoods.name
+    targetGoods.description = body.description ?: targetGoods.description
+    targetGoods.price = body.price ?: targetGoods.price
+    return goodsRepository.save(targetGoods)
   }
 }
