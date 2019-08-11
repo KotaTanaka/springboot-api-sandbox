@@ -1,5 +1,7 @@
 package com.kotatanaka.goodsapi.config
 
+import com.kotatanaka.goodsapi.app.filter.LoggingFilter
+import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.MessageSource
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -28,6 +30,14 @@ class AppConfig {
   fun getValidator(): LocalValidatorFactoryBean {
     val bean = LocalValidatorFactoryBean()
     bean.setValidationMessageSource(messageSource())
+    return bean
+  }
+
+  /** ログ出力フィルターの設定 */
+  @Bean
+  fun loggingFilter(): FilterRegistrationBean<*> {
+    val bean = FilterRegistrationBean(LoggingFilter())
+    bean.addUrlPatterns("/app/*")
     return bean
   }
 }
