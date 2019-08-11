@@ -30,7 +30,7 @@ class CheckTokenInterceptor(
 
     val token = request.getHeader("Authorization")
       ?: throw AuthenticationException(messageFactory.required(GoodsParams.AUTHORIZATION.label))
-    val userEntity = userService.checkToken(token)
+    val userEntity = userService.checkToken(token.replace("Bearer", "").trim())
     request.setAttribute(GoodsParams.USER.key, userEntity)
     return super.preHandle(request, response, handler)
   }
