@@ -1,0 +1,36 @@
+version: "3.6"
+
+services:
+  # --------------------
+  # Goods Manager App
+  # --------------------
+  app:
+    build: .
+    container_name: goods-manager-app
+    working_dir: /var/app
+    depends_on:
+      - mysql
+    tty: true
+    expose:
+      - 7070
+    ports:
+      - 7070:8080
+    volumes:
+      - .:/var/app
+
+  # --------------------
+  # Goods Manager MySQL
+  # --------------------
+  mysql:
+    image: mysql:5.7
+    container_name: goods-manager-mysql
+    hostname: mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/db/mysql_data:/var/lib/mysql
+      - ./docker/db/init:/docker-entrypoint-initdb.d
+      - ./docker/db/config/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: goods_manager_db
