@@ -8,6 +8,50 @@
 * DB `MySQL 5.7`
 * ORM `Spring Data JPA`
 
+### ローカル開発環境構築
+
+* ソースコードのクローン
+
+```
+$ git clone git@github.com:KotaTanaka/goods-api-kotlin.git
+$ cd goods-api-kotlin
+```
+
+*コンテナの起動 (docker-compose up)
+
+```
+$ ./start-docker.sh
+```
+
+* コンテナの停止 (docker-compose down)
+
+```
+$ ./stop-docker.sh
+```
+
+* アプリケーションサーバー起動
+
+```
+$ ./start-server.sh
+```
+
+→ http://localhost:7070 でサーバーが起動します。
+
+* データベースログイン
+
+```
+$ ./mysql.sh
+Enter password: password
+mysql> use goods_manager_db;
+```
+
+* データベース初期化
+
+```
+$ rm -rf docker/db/mysql_data
+$ ./stop-docker.sh && ./start-docker.sh
+```
+
 ### API一覧
 | リクエスト | メソッド | URL |
 |:---|:---|:---|
