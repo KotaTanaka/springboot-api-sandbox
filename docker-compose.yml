@@ -1,9 +1,9 @@
 version: "3.6"
 
 services:
-  # --------------------
-  # Goods Manager App
-  # --------------------
+  # --------------------- #
+  #   Goods Manager App   #
+  # --------------------- #
   app:
     build: .
     container_name: goods-manager-app
@@ -17,10 +17,9 @@ services:
       - 7070:8080
     volumes:
       - .:/var/app
-
-  # --------------------
-  # Goods Manager MySQL
-  # --------------------
+  # ----------------------- #
+  #   Goods Manager MySQL   #
+  # ----------------------- #
   mysql:
     image: mysql:5.7
     container_name: goods-manager-mysql
