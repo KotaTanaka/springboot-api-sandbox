@@ -1,7 +1,7 @@
 -- --------------------------------------------------
 -- 商品テーブル
 -- --------------------------------------------------
-CREATE TABLE IF NOT EXISTS `goods_db`.`goods`
+CREATE TABLE IF NOT EXISTS `goods_manager_db`.`goods`
 (
   `id`          INT          NOT NULL AUTO_INCREMENT COMMENT '商品ID',
   `name`        VARCHAR(50)  NOT NULL COMMENT '商品名',
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `goods_db`.`goods`
 -- --------------------------------------------------
 -- ユーザーテーブル
 -- --------------------------------------------------
-CREATE TABLE IF NOT EXISTS `goods_db`.`user`
+CREATE TABLE IF NOT EXISTS `goods_manager_db`.`user`
 (
   `id`          VARCHAR(16) NOT NULL COMMENT 'ユーザーID',
   `name`        VARCHAR(10) NOT NULL COMMENT 'ユーザー名',
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `goods_db`.`user`
 -- --------------------------------------------------
 -- 統計テーブル
 -- --------------------------------------------------
-CREATE TABLE IF NOT EXISTS `goods_db`.`aggregation`
+CREATE TABLE IF NOT EXISTS `goods_manager_db`.`aggregation`
 (
   `id`            INT         NOT NULL AUTO_INCREMENT COMMENT '集計ID',
   `request`       VARCHAR(32) NOT NULL COMMENT 'リクエスト',
