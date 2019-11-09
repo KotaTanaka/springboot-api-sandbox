@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+import org.springframework.web.filter.CorsFilter
 
 /**
  * アプリケーションの汎用的な設定
@@ -38,6 +41,23 @@ class AppConfig {
   fun loggingFilter(): FilterRegistrationBean<*> {
     val bean = FilterRegistrationBean(LoggingFilter())
     bean.addUrlPatterns("/app/*")
+    return bean
+  }
+
+  /** CORS の設定 */
+  @Bean
+  fun corsFilter(): FilterRegistrationBean<CorsFilter> {
+    val source = UrlBasedCorsConfigurationSource()
+    val config = CorsConfiguration()
+
+    config.allowCredentials = true
+    config.addAllowedOrigin(CorsConfiguration.ALL)
+    config.addAllowedHeader(CorsConfiguration.ALL)
+    config.addAllowedMethod(CorsConfiguration.ALL)
+
+    source.registerCorsConfiguration("/**", config)
+    val bean = FilterRegistrationBean(CorsFilter(source))
+    bean.order = 0
     return bean
   }
 }
