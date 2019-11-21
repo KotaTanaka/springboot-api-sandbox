@@ -110,7 +110,7 @@ $ ./stop-docker.sh && ./start-docker.sh
 +---------------+-------------+------+-----+---------+
 ```
 
-### プロジェクト構成
+### パッケージ構成
 ```
 src/main/kotlin/com/kotatanaka/goodsapi
 ├── GoodsApiKotlinApplication.kt
@@ -128,10 +128,10 @@ src/main/kotlin/com/kotatanaka/goodsapi
 │   ├── entity
 │   ├── enums
 │   ├── exception
-│   ├── factory
 │   ├── repository
-│   ├── service
-│   └── validation
-│       └── validator
-└── util
+│   └── service
+├── factory
+├── util
+└── validation
+    └── validator
 ```
