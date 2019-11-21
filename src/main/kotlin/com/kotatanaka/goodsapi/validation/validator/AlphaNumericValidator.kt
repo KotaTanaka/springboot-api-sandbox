@@ -1,6 +1,6 @@
-package com.kotatanaka.goodsapi.domain.validation.validator
+package com.kotatanaka.goodsapi.validation.validator
 
-import com.kotatanaka.goodsapi.domain.validation.AlphaNumeric
+import com.kotatanaka.goodsapi.validation.AlphaNumeric
 import javax.validation.ConstraintValidator
 import javax.validation.ConstraintValidatorContext
 

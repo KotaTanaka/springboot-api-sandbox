@@ -1,6 +1,6 @@
 package com.kotatanaka.goodsapi.domain.dto.request
 
-import com.kotatanaka.goodsapi.domain.validation.AlphaNumeric
+import com.kotatanaka.goodsapi.validation.AlphaNumeric
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
 
