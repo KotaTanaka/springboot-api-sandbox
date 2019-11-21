@@ -5,7 +5,7 @@ import com.kotatanaka.goodsapi.domain.enums.GoodsParams
 import com.kotatanaka.goodsapi.domain.exception.AuthenticationException
 import com.kotatanaka.goodsapi.domain.exception.NotFoundException
 import com.kotatanaka.goodsapi.domain.exception.ValidationException
-import com.kotatanaka.goodsapi.domain.factory.MessageFactory
+import com.kotatanaka.goodsapi.factory.MessageFactory
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException

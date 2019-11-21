@@ -1,4 +1,4 @@
-package com.kotatanaka.goodsapi.domain.factory
+package com.kotatanaka.goodsapi.factory
 
 import org.springframework.context.MessageSource
 import org.springframework.context.support.DefaultMessageSourceResolvable

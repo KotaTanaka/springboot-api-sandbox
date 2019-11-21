@@ -6,8 +6,8 @@ import com.kotatanaka.goodsapi.domain.entity.UserEntity
 import com.kotatanaka.goodsapi.domain.enums.GoodsParams
 import com.kotatanaka.goodsapi.domain.exception.AuthenticationException
 import com.kotatanaka.goodsapi.domain.exception.ValidationException
-import com.kotatanaka.goodsapi.domain.factory.MessageFactory
 import com.kotatanaka.goodsapi.domain.repository.UserRepository
+import com.kotatanaka.goodsapi.factory.MessageFactory
 import com.kotatanaka.goodsapi.util.IdUtil
 import org.springframework.stereotype.Service
 

@@ -1,7 +1,7 @@
 package com.kotatanaka.goodsapi.app.handler
 
 import com.kotatanaka.goodsapi.domain.enums.GoodsParams
-import com.kotatanaka.goodsapi.domain.factory.ObjectMapper
+import com.kotatanaka.goodsapi.factory.ObjectMapper
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.WebDataBinder
 import org.springframework.web.bind.annotation.InitBinder

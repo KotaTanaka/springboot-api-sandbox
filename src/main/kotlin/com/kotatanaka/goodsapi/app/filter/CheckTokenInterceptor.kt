@@ -2,8 +2,8 @@ package com.kotatanaka.goodsapi.app.filter
 
 import com.kotatanaka.goodsapi.domain.enums.GoodsParams
 import com.kotatanaka.goodsapi.domain.exception.AuthenticationException
-import com.kotatanaka.goodsapi.domain.factory.MessageFactory
 import com.kotatanaka.goodsapi.domain.service.UserService
+import com.kotatanaka.goodsapi.factory.MessageFactory
 import org.springframework.stereotype.Component
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.servlet.HandlerInterceptor

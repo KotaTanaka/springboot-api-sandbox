@@ -1,4 +1,4 @@
-package com.kotatanaka.goodsapi.domain.factory
+package com.kotatanaka.goodsapi.factory
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
