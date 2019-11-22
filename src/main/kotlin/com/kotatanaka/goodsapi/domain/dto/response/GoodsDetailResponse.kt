@@ -14,7 +14,7 @@ data class GoodsDetailResponse(
   val description: String,
   val price: Int,
   val createdAt: String,
-  val updateAt: String
+  val updatedAt: String
 ) {
 
   /** Entityをレスポンス形式に変換するコンストラクタ */
