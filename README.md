@@ -52,6 +52,12 @@ $ rm -rf docker/db/mysql_data
 $ ./stop-docker.sh && ./start-docker.sh
 ```
 
+* ER図(データベース定義書)生成
+
+```
+$ ./generate-er.sh
+```
+
 ### API一覧
 | リクエスト | メソッド | URL |
 |:---|:---|:---|
