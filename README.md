@@ -1,45 +1,54 @@
-## 商品管理API
-商品管理アプリケーションのサーバーサイド。  
-商品・ユーザー・統計データを操作するRESTful API。
+***goods-api-kotlin***
 
-### 技術要素
+## About
+
+商品管理アプリケーションのサーバーサイド。  
+商品・ユーザー・統計データを操作する RESTful API。
+
+*[Frontend - goods-spa-nuxt](https://github.com/KotaTanaka/goods-spa-nuxt)*
+
+## Technology
+
 * 言語 `Kotlin`
 * フレームワーク `Spring Boot 2.1.7`
 * DB `MySQL 5.7`
 * ORM `Spring Data JPA`
 
-### ローカル開発環境構築
+## Getting Started
 
-* ソースコードのクローン
+* インストール
 
-```
+```bash
 $ git clone git@github.com:KotaTanaka/goods-api-kotlin.git
 $ cd goods-api-kotlin
 ```
 
-*コンテナの起動 (docker-compose up)
+* サービスの起動
 
-```
+```bash
 $ ./start-docker.sh
 ```
 
-* コンテナの停止 (docker-compose down)
+* アプリケーションの起動
 
-```
-$ ./stop-docker.sh
-```
-
-* アプリケーションサーバー起動
-
-```
+```bash
 $ ./start-server.sh
 ```
 
-→ http://localhost:7070 でサーバーが起動します。
+→ http://localhost:7070
+
+* サービスの停止
+
+```bash
+$ ./stop-docker.sh
+```
+
+
+## Utility Commands
 
 * データベースログイン
 
-```
+```bash
 $ ./mysql.sh
 Enter password: password
 mysql> use goods_manager_db;
@@ -47,18 +56,22 @@ mysql> use goods_manager_db;
 
 * データベース初期化
 
-```
+```bash
+# DB削除
 $ rm -rf docker/db/mysql_data
+
+# サービス再起動(DB再生成)
 $ ./stop-docker.sh && ./start-docker.sh
 ```
 
-* ER図(データベース定義書)生成
+* ER図（データベース定義書）生成
 
-```
+```bash
+# SchemaSpy
 $ ./generate-er.sh
 ```
 
-### API一覧
+## API List
 | リクエスト | メソッド | URL |
 |:---|:---|:---|
 | 商品全件取得 | GET | /app/goods |
@@ -71,52 +84,20 @@ $ ./generate-er.sh
 | ログイン | PUT | /app/user/login |
 | ログアウト | PUT | /app/user/logout |
 
-*TODO OpenAPIでAPI定義書作成*
+*TODO OpenAPI & Redoc 導入*
 
-### DB定義
-* 商品テーブル
-```
-+-------------+--------------+------+-----+---------+
-| Field       | Type         | Null | Key | Default |
-+-------------+--------------+------+-----+---------+
-| id          | int(11)      | NO   | PRI | NULL    |
-| name        | varchar(50)  | NO   |     | NULL    |
-| description | varchar(500) | YES  |     | NULL    |
-| price       | int(11)      | NO   |     | NULL    |
-| created_at  | datetime     | NO   |     | NULL    |
-| updated_at  | datetime     | NO   |     | NULL    |
-+-------------+--------------+------+-----+---------+
-```
+## Database
 
-* ユーザーテーブル
-```
-+-------------+-------------+------+-----+---------+
-| Field       | Type        | Null | Key | Default |
-+-------------+-------------+------+-----+---------+
-| id          | varchar(16) | NO   | PRI | NULL    |
-| name        | varchar(10) | NO   |     | NULL    |
-| password    | varchar(8)  | NO   |     | NULL    |
-| login_token | varchar(32) | YES  |     | NULL    |
-| created_at  | datetime    | NO   |     | NULL    |
-| updated_at  | datetime    | NO   |     | NULL    |
-+-------------+-------------+------+-----+---------+
-```
+データベース名 `goods_manager_db`
 
-* 統計テーブル
-```
-+---------------+-------------+------+-----+---------+
-| Field         | Type        | Null | Key | Default |
-+---------------+-------------+------+-----+---------+
-| id            | int(11)     | NO   | PRI | NULL    | auto_increment
-| request       | varchar(32) | NO   |     | NULL    |
-| status_code   | int(11)     | NO   |     | NULL    |
-| access_times  | int(11)     | NO   |     | NULL    |
-| average_time  | int(11)     | NO   |     | NULL    |
-| aggregated_at | datetime    | NO   |     | NULL    |
-+---------------+-------------+------+-----+---------+
-```
+| テーブル物理名 | 論理名 |
+|:---|:---|
+| `goods` | 商品 |
+| `user` | ユーザー |
+| `aggregattion` | 統計（アクセス集計） |
 
-### パッケージ構成
+## Package Architecture
+
 ```
 src/main/kotlin/com/kotatanaka/goodsapi
 ├── GoodsApiKotlinApplication.kt
