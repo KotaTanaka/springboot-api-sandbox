@@ -9,10 +9,13 @@
 
 ## Technology
 
-* 言語 `Kotlin`
+* 言語 `Kotlin 1.2.71`
 * フレームワーク `Spring Boot 2.1.7`
+* ビルドツール `Gradle`
 * DB `MySQL 5.7`
 * ORM `Spring Data JPA`
+* 開発環境 `Docker` `docker-compose`
+* ユニットテスト `MockK 1.9`
 
 ## Getting Started
 
@@ -83,8 +86,6 @@ $ ./generate-er.sh
 | ユーザー登録 | POST | /app/user |
 | ログイン | PUT | /app/user/login |
 | ログアウト | PUT | /app/user/logout |
-
-*TODO OpenAPI & Redoc 導入*
 
 ## Database
 
