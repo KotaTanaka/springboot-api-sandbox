@@ -5,6 +5,7 @@ import com.kotatanaka.goodsapi.domain.dto.request.UpdateGoodsBody
 import com.kotatanaka.goodsapi.domain.dto.response.GoodsDetailResponse
 import com.kotatanaka.goodsapi.domain.dto.response.GoodsListingResponse
 import com.kotatanaka.goodsapi.domain.entity.GoodsEntity
+import com.kotatanaka.goodsapi.domain.exception.ValidationException
 import com.kotatanaka.goodsapi.domain.service.GoodsService
 import com.kotatanaka.goodsapi.factory.ObjectMapper
 import io.mockk.confirmVerified
@@ -16,6 +17,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.web.util.NestedServletException
 
 /**
  * [GoodsController] のテスト
@@ -57,6 +59,54 @@ class GoodsControllerTest : ControllerTestBase() {
 
     verify(exactly = 1) { goodsService.create(createGoodsBody) }
     confirmVerified(goodsService)
+  }
+
+  @Test(expected = ValidationException::class)
+  fun createGoods_異常系_名前未入力() {
+    val createGoodsBody = CreateGoodsBody(null, mockGoods1.description, mockGoods1.price)
+
+    try {
+      mockMvc
+        .perform(post("/app/goods", ObjectMapper().toJsonString(createGoodsBody)))
+    } catch (e: NestedServletException) {
+      throw e.rootCause
+    }
+  }
+
+  @Test(expected = ValidationException::class)
+  fun createGoods_異常系_価格未入力() {
+    val createGoodsBody = CreateGoodsBody(mockGoods1.name, mockGoods1.description, null)
+
+    try {
+      mockMvc
+        .perform(post("/app/goods", ObjectMapper().toJsonString(createGoodsBody)))
+    } catch (e: NestedServletException) {
+      throw e.rootCause
+    }
+  }
+
+  @Test(expected = ValidationException::class)
+  fun createGoods_異常系_名前文字数オーバー() {
+    val createGoodsBody = CreateGoodsBody("あ".repeat(51), mockGoods1.description, mockGoods1.price)
+
+    try {
+      mockMvc
+        .perform(post("/app/goods", ObjectMapper().toJsonString(createGoodsBody)))
+    } catch (e: NestedServletException) {
+      throw e.rootCause
+    }
+  }
+
+  @Test(expected = ValidationException::class)
+  fun createGoods_異常系_説明文字数オーバー() {
+    val createGoodsBody = CreateGoodsBody(mockGoods1.name, "あ".repeat(501), mockGoods1.price)
+
+    try {
+      mockMvc
+        .perform(post("/app/goods", ObjectMapper().toJsonString(createGoodsBody)))
+    } catch (e: NestedServletException) {
+      throw e.rootCause
+    }
   }
 
   @Test
@@ -111,6 +161,30 @@ class GoodsControllerTest : ControllerTestBase() {
 
     verify(exactly = 1) { goodsService.update(mockGoods1.id, updateGoodsBody) }
     confirmVerified(goodsService)
+  }
+
+  @Test(expected = ValidationException::class)
+  fun updateGoods_異常系_名前文字数オーバー() {
+    val updateGoodsBody = UpdateGoodsBody("あ".repeat(51), null, null)
+
+    try {
+      mockMvc
+        .perform(put("/app/goods/${mockGoods1.id}", ObjectMapper().toJsonString(updateGoodsBody)))
+    } catch (e: NestedServletException) {
+      throw e.rootCause
+    }
+  }
+
+  @Test(expected = ValidationException::class)
+  fun updateGoods_異常系_説明文字数オーバー() {
+    val updateGoodsBody = UpdateGoodsBody(null, "あ".repeat(501), null)
+
+    try {
+      mockMvc
+        .perform(put("/app/goods/${mockGoods1.id}", ObjectMapper().toJsonString(updateGoodsBody)))
+    } catch (e: NestedServletException) {
+      throw e.rootCause
+    }
   }
 
   @Test
