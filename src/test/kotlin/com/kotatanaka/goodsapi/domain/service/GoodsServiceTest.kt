@@ -3,6 +3,7 @@ package com.kotatanaka.goodsapi.domain.service
 import com.kotatanaka.goodsapi.domain.dto.request.CreateGoodsBody
 import com.kotatanaka.goodsapi.domain.dto.request.UpdateGoodsBody
 import com.kotatanaka.goodsapi.domain.entity.GoodsEntity
+import com.kotatanaka.goodsapi.domain.exception.NotFoundException
 import com.kotatanaka.goodsapi.domain.repository.GoodsRepository
 import io.mockk.confirmVerified
 import io.mockk.every
@@ -70,6 +71,12 @@ class GoodsServiceTest : ServiceTestBase() {
     confirmVerified(goodsRepository)
   }
 
+  @Test(expected = NotFoundException::class)
+  fun finById_異常系_商品が存在しない() {
+    every { goodsRepository.findById(NOT_EXIST_ID) } returns Optional.empty()
+    goodsService.findById(NOT_EXIST_ID)
+  }
+
   @Test
   fun update_正常系() {
     every { goodsService.findById(mockGoods1.id) } returns mockGoods1
@@ -86,6 +93,14 @@ class GoodsServiceTest : ServiceTestBase() {
     confirmVerified(goodsRepository)
   }
 
+  @Test(expected = NotFoundException::class)
+  fun update_異常系_商品が存在しない() {
+    every { goodsRepository.findById(NOT_EXIST_ID) } returns Optional.empty()
+    goodsService.update(
+      NOT_EXIST_ID, UpdateGoodsBody(mockGoods1.name, null, null)
+    )
+  }
+
   @Test
   fun delete_正常系() {
     every { goodsService.findById(mockGoods1.id) } returns mockGoods1
@@ -96,5 +111,11 @@ class GoodsServiceTest : ServiceTestBase() {
     verify(exactly = 1) { goodsRepository.findById(mockGoods1.id) }
     verify(exactly = 1) { goodsRepository.delete(mockGoods1) }
     confirmVerified(goodsRepository)
+  }
+
+  @Test(expected = NotFoundException::class)
+  fun delete_異常系_商品が存在しない() {
+    every { goodsRepository.findById(NOT_EXIST_ID) } returns Optional.empty()
+    goodsService.delete(NOT_EXIST_ID)
   }
 }

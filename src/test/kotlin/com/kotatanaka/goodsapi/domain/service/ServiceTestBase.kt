@@ -8,6 +8,11 @@ import org.junit.Before
  * @author tanakakota
  */
 open class ServiceTestBase {
+
+  companion object {
+    const val NOT_EXIST_ID = 999
+  }
+
   @Before
   open fun setUp() {
     MockKAnnotations.init(this, relaxUnitFun = true)
