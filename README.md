@@ -29,7 +29,7 @@ $ cd goods-api-kotlin
 * サービスの起動
 
 ```bash
-$ ./start-docker.sh
+$ docker-compose up -d
 ```
 
 * アプリケーションの起動
@@ -43,9 +43,8 @@ $ ./start-server.sh
 * サービスの停止
 
 ```bash
-$ ./stop-docker.sh
+$ docker-compose down
 ```
-
 
 ## Utility Commands
 
@@ -95,7 +94,7 @@ $ ./generate-er.sh
 |:---|:---|
 | `goods` | 商品 |
 | `user` | ユーザー |
-| `aggregattion` | 統計（アクセス集計） |
+| `aggregation` | 統計（アクセス集計） |
 
 ## Package Architecture
 
