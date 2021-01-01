@@ -1,30 +1,23 @@
-***goods-api-kotlin***
+***springboot-api-sandbox***
 
 ## About
 
-商品管理アプリケーションのサーバーサイド。  
-商品・ユーザー・統計データを操作する RESTful API。
+SpringBoot + Kotlin でのサーバーサイドDDDの実験場  
+商品を管理する RESTful API
 
-*[Frontend - goods-spa-nuxt](https://github.com/KotaTanaka/goods-spa-nuxt)*
+*[Frontend - nuxt-frontend-sandbox](https://github.com/KotaTanaka/nuxt-frontend-sandbox)*
 
 ## Technology
 
-* 言語 `Kotlin 1.2.71`
-* フレームワーク `Spring Boot 2.1.7`
-* ビルドツール `Gradle`
-* DB `MySQL 5.7`
-* ORM `Spring Data JPA`
-* 開発環境 `Docker` `docker-compose`
-* ユニットテスト `MockK 1.9`
+* 言語 - `Kotlin 1.2.71`
+* フレームワーク - `Spring Boot 2.1.7`
+* ビルドツール - `Gradle`
+* DB - `MySQL 5.7`
+* ORM - `Spring Data JPA`
+* 開発環境 - `Docker` `docker-compose`
+* ユニットテスト - `MockK 1.9`
 
 ## Getting Started
-
-* インストール
-
-```bash
-$ git clone git@github.com:KotaTanaka/goods-api-kotlin.git
-$ cd goods-api-kotlin
-```
 
 * サービスの起動
 
