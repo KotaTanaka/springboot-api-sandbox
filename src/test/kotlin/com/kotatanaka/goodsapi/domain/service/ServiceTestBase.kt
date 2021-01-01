@@ -3,10 +3,7 @@ package com.kotatanaka.goodsapi.domain.service
 import io.mockk.MockKAnnotations
 import org.junit.Before
 
-/**
- * サービスのユニットテスト基底クラス
- * @author tanakakota
- */
+/** サービスのユニットテスト基底クラス */
 open class ServiceTestBase {
 
   companion object {

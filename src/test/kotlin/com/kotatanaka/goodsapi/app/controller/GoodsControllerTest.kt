@@ -19,10 +19,7 @@ import org.junit.Test
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.web.util.NestedServletException
 
-/**
- * [GoodsController] のテスト
- * @author tanakakota
- */
+/** [GoodsController] のテスト */
 class GoodsControllerTest : ControllerTestBase() {
 
   @InjectMockKs

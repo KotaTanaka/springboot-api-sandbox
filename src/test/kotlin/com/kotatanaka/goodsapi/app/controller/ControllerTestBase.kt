@@ -8,10 +8,7 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 
-/**
- * コントローラーのユニットテスト基底クラス
- * @author tanakakota
- */
+/** コントローラーのユニットテスト基底クラス */
 open class ControllerTestBase {
 
   lateinit var mockMvc: MockMvc

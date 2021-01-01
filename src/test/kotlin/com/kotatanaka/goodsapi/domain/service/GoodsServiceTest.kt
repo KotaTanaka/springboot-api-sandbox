@@ -15,10 +15,7 @@ import org.junit.Before
 import org.junit.Test
 import java.util.Optional
 
-/**
- * [GoodsService] のテスト
- * @author tanakakota
- */
+/** [GoodsService] のテスト */
 class GoodsServiceTest : ServiceTestBase() {
 
   @InjectMockKs
