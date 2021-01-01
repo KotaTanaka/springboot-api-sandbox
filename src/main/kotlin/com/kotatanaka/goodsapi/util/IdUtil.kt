@@ -2,11 +2,7 @@ package com.kotatanaka.goodsapi.util
 
 import java.util.UUID
 
-/**
- * IDのユーティリティ
- *
- * @author kotatanaka
- */
+/** IDのユーティリティ */
 class IdUtil {
 
   companion object {

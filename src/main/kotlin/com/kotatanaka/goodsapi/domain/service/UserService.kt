@@ -11,11 +11,7 @@ import com.kotatanaka.goodsapi.factory.MessageFactory
 import com.kotatanaka.goodsapi.util.IdUtil
 import org.springframework.stereotype.Service
 
-/**
- * ユーザー操作サービス
- *
- * @author kotatanaka
- */
+/** ユーザー操作サービス */
 @Service
 class UserService(
   private val userRepository: UserRepository,

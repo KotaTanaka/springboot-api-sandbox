@@ -6,11 +6,7 @@ import javax.validation.Payload
 import javax.validation.ReportAsSingleViolation
 import kotlin.reflect.KClass
 
-/**
- * 半角英数バリデーション アノテーション
- *
- * @author kotatanaka
- */
+/** 半角英数バリデーション アノテーション */
 @Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 @MustBeDocumented

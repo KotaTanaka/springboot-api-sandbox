@@ -18,11 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import javax.servlet.http.HttpServletRequest
 
-/**
- * ユーザーコントローラー
- *
- * @author kotatanaka
- */
+/** ユーザーコントローラー */
 @RestController
 @RequestMapping("/app/user")
 class UserController(private val userService: UserService) {

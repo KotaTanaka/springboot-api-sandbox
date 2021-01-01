@@ -4,11 +4,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.FieldError
 
-/**
- * エラーレスポンス
- *
- * @author kotatanaka
- */
+/** エラーレスポンス */
 data class ErrorResponse(
   val code: Int,
   val message: String,

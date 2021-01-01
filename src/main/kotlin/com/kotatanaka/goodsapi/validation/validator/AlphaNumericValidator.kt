@@ -4,11 +4,7 @@ import com.kotatanaka.goodsapi.validation.AlphaNumeric
 import javax.validation.ConstraintValidator
 import javax.validation.ConstraintValidatorContext
 
-/**
- * 半角英数バリデータ
- *
- * @author kotatanaka
- */
+/** 半角英数バリデーター */
 class AlphaNumericValidator : ConstraintValidator<AlphaNumeric, String> {
 
   companion object {

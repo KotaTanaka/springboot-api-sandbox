@@ -6,11 +6,7 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import org.springframework.stereotype.Component
 import java.io.IOException
 
-/**
- * JSONデータ変換クラス
- *
- * @author kotatanaka
- */
+/** JSONデータ変換クラス */
 @Component
 class ObjectMapper {
 

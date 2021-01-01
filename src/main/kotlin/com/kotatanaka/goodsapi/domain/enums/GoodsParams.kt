@@ -1,10 +1,6 @@
 package com.kotatanaka.goodsapi.domain.enums
 
-/**
- * パラメータ定数
- *
- * @author kotatanaka
- */
+/** パラメータ定数 */
 enum class GoodsParams(
   val key: String,
   val label: String

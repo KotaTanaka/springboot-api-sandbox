@@ -8,11 +8,7 @@ import com.kotatanaka.goodsapi.domain.exception.NotFoundException
 import com.kotatanaka.goodsapi.domain.repository.GoodsRepository
 import org.springframework.stereotype.Service
 
-/**
- * 商品操作サービス
- *
- * @author kotatanaka
- */
+/** 商品操作サービス */
 @Service
 class GoodsService(private val goodsRepository: GoodsRepository) {
 

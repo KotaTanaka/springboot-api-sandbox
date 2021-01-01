@@ -5,11 +5,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
-/**
- * Spring MVC の設定
- *
- * @author kotatanaka
- */
+/** Spring MVC の設定 */
 @Configuration
 class WebMvcConfig(private val checkTokenInterceptor: CheckTokenInterceptor) : WebMvcConfigurer {
 

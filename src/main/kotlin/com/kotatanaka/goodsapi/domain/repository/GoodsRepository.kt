@@ -4,11 +4,7 @@ import com.kotatanaka.goodsapi.domain.entity.GoodsEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
-/**
- * [GoodsEntity] のリポジトリ
- *
- * @author kotatanaka
- */
+/** [GoodsEntity] のリポジトリ */
 @Repository
 interface GoodsRepository : JpaRepository<GoodsEntity, Int> {
   fun findByNameContaining(key: String): List<GoodsEntity>

@@ -15,11 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.servlet.NoHandlerFoundException
 import javax.servlet.http.HttpServletRequest
 
-/**
- * 例外ハンドラー
- *
- * @author kotatanaka
- */
+/** 例外ハンドラー */
 @RestControllerAdvice
 class AppExceptionHandler(private val messageFactory: MessageFactory) {
 

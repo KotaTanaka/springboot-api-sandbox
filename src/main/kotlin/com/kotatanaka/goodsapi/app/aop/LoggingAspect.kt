@@ -8,11 +8,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import javax.servlet.http.HttpServletRequest
 
-/**
- * ログ出力用AOPクラス
- *
- * @author kotatanaka
- */
+/** ログ出力用AOPクラス */
 @Aspect
 @Component
 class LoggingAspect(private val request: HttpServletRequest) {

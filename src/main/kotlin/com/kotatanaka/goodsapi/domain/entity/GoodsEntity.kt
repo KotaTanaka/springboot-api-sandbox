@@ -12,11 +12,7 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Table
 
-/**
- * 商品テーブルのエンティティ
- *
- * @author kotatanaka
- */
+/** 商品テーブルのエンティティ */
 @Entity
 @Table(name = "goods", schema = "goods_db")
 data class GoodsEntity(

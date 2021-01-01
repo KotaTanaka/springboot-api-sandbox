@@ -8,11 +8,7 @@ import org.springframework.web.bind.annotation.InitBinder
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import javax.servlet.http.HttpServletRequest
 
-/**
- * リクエストパラメータをログ出力するためのハンドラー
- *
- * @author kotatanaka
- */
+/** リクエストパラメータをログ出力するためのハンドラー */
 @RestControllerAdvice
 class RequestHandler(private val objectMapper: ObjectMapper) {
 

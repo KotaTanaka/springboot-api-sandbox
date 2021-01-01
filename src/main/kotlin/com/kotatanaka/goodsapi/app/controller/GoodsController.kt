@@ -21,11 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-/**
- * 商品コントローラー
- *
- * @author kotatanaka
- */
+/** 商品コントローラー */
 @RestController
 @RequestMapping("/app/goods")
 class GoodsController(private val goodsService: GoodsService) {

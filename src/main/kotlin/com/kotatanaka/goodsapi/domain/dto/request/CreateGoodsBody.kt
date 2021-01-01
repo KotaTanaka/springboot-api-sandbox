@@ -4,11 +4,7 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
-/**
- * 商品登録リクエストボディ
- *
- * @author kotatanaka
- */
+/** 商品登録リクエストボディ */
 data class CreateGoodsBody(
   @field:NotBlank
   @field:Size(max = 50)

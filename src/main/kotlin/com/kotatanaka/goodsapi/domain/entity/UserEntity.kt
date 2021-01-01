@@ -10,11 +10,7 @@ import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.Table
 
-/**
- * ユーザーテーブルのエンティティ
- *
- * @author kotatanaka
- */
+/** ユーザーテーブルのエンティティ */
 @Entity
 @Table(name = "user", schema = "goods_db")
 data class UserEntity(

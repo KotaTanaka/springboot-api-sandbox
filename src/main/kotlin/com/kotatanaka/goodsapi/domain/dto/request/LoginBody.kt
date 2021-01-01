@@ -4,11 +4,7 @@ import com.kotatanaka.goodsapi.validation.AlphaNumeric
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
 
-/**
- * ユーザー登録リクエストボディ
- *
- * @author kotatanaka
- */
+/** ログインリクエストボディ */
 data class LoginBody(
   @AlphaNumeric
   @field:NotBlank

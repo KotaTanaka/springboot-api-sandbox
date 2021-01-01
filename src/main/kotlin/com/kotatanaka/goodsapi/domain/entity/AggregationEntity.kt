@@ -11,11 +11,7 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Table
 
-/**
- * 統計テーブルのエンティティ
- *
- * @author kotatanaka
- */
+/** 統計テーブルのエンティティ */
 @Entity
 @Table(name = "aggregation", schema = "goods_db")
 data class AggregationEntity(

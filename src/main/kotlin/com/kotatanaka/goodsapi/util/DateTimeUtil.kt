@@ -4,11 +4,7 @@ import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-/**
- * 日付のユーティリティ
- *
- * @author kotatanaka
- */
+/** 日付のユーティリティ */
 class DateTimeUtil {
 
   companion object {

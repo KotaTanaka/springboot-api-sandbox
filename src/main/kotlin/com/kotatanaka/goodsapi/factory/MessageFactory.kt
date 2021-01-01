@@ -6,11 +6,7 @@ import org.springframework.stereotype.Component
 import org.springframework.validation.FieldError
 import java.util.Locale
 
-/**
- * MessageSource からメッセージを生成する
- *
- * @author kotatanaka
- */
+/** MessageSource からメッセージを生成する */
 @Component
 class MessageFactory(private val messageSource: MessageSource) {
 

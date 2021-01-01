@@ -3,11 +3,7 @@ package com.kotatanaka.goodsapi.domain.dto.response
 import com.kotatanaka.goodsapi.domain.entity.GoodsEntity
 import com.kotatanaka.goodsapi.util.DateTimeUtil
 
-/**
- * 商品詳細取得レスポンス
- *
- * @author kotatanaka
- */
+/** 商品詳細取得レスポンス */
 data class GoodsDetailResponse(
   val id: Int,
   val name: String,

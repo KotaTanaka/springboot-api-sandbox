@@ -10,11 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-/**
- * トークンチェックインターセプター
- *
- * @author kotatanaka
- */
+/** トークンチェックインターセプター */
 @Component
 class CheckTokenInterceptor(
   private val userService: UserService,

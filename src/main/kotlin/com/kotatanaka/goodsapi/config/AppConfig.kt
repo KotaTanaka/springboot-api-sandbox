@@ -11,11 +11,7 @@ import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import org.springframework.web.filter.CorsFilter
 
-/**
- * アプリケーションの汎用的な設定
- *
- * @author kotatanaka
- */
+/** アプリケーションの汎用的な設定 */
 @Configuration
 class AppConfig {
 
