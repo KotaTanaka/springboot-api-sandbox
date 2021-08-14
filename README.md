@@ -2,7 +2,7 @@
 
 ## About
 
-SpringBoot + Kotlin でのサーバーサイドDDDの実験場  
+SpringBoot + Kotlin でのサーバーサイドDDDの素振り  
 商品を管理する RESTful API
 
 *[Frontend - nuxt-frontend-sandbox](https://github.com/KotaTanaka/nuxt-frontend-sandbox)*
