@@ -22,6 +22,7 @@ services:
   # ----------------------- #
   mysql:
     image: mysql:5.7
+    platform: linux/x86_64
     container_name: goods-manager-mysql
     hostname: mysql
     ports:
