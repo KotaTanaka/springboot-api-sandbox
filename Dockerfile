@@ -1,4 +1,4 @@
-FROM --platform=linux/x86_64 adoptopenjdk/openjdk8:alpine-slim
+FROM openjdk:8-jdk-alpine
 
 COPY . /var/app
 WORKDIR /var/app
